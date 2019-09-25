@@ -1,5 +1,5 @@
+﻿using Microsoft.Extensions.Configuration;
 using StackExchange.Redis;
-using Microsoft.Extensions.Configuration;
 
 namespace TodoApi.Services
 {
