@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TodoApi.Model;
+using TodoApi.Services;
 
 namespace TodoApi.Controllers
 {
@@ -11,10 +12,15 @@ namespace TodoApi.Controllers
     [ApiController]
     public class TodoController : ControllerBase
     {
+        private readonly RedisService _redis;
         private readonly TodoContext _context;
-        public TodoController(TodoContext context)
+        public TodoController(TodoContext context, IRedisService redis)
         {
+            _redis = (RedisService)redis;
             _context = context;
+
+            int ViewCount = (int)this._redis.GetDatabase().StringGet("ViewCount");
+            this._redis.GetDatabase().StringSet("ViewCount", ViewCount + 1);
 
             if (_context.TodoItems.Count() == 0)
             {
