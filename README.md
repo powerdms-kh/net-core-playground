@@ -3,7 +3,7 @@
 This is the .NET Core Playground to learn and experiment with .NET Core.
 
 ## Dependencies
-- .NET Core 2.2
+- .NET Core 3.0 SDK
 
 ## Getting Started
 - Clone this repository to `dir`
